@@ -1,0 +1,21 @@
+{% include 'todo/header.html' %}
+
+{% block content %}
+<h1>This is your todo list</h1>
+
+<label for="new-task">Enter new task</label>
+<form id="new-task" method="post" action="{% url 'addTask' %}">
+    {% csrf_token %}
+    <input name="task" type="text" placeholder="Todo...">
+    <button type="submit">Add Task</button>
+</form>
+
+
+<ul>
+    {% for todo in todolist %}
+        <li>{{ todo.task }} <a href="#">X</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% include 'todo/footer.html' %}
