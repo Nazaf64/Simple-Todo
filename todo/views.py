@@ -20,5 +20,8 @@ def addTask(request):
             return redirect('/')
             
 # Delete Task
-# def deleteTask(request):
+def deleteTask(request, pk):
+    if (request.method == 'POST'):
+        task = Todo.objects.get(id=pk)
+        task.delete()
 

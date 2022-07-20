@@ -13,7 +13,7 @@
 
 <ul>
     {% for todo in todolist %}
-        <li>{{ todo.task }} <a href="#">X</a></li>
+        <li>{{ todo.task }} <a href="{% url 'deleteTask/{{todo.id}}' %}">X</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
