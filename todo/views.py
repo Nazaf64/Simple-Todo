@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Todo
+from django.http import HttpResponse
 
 def home(request):
     todolist = Todo.objects.all()
@@ -14,14 +15,17 @@ def addTask(request):
             task = request.POST['task']
             task = Todo(task=task)
             task.save()
-            return redirect('/')
+            return redirect('home')
         
         elif(request.POST['task'] == ''):
-            return redirect('/')
+            return redirect('home')
             
 # Delete Task
 def deleteTask(request, pk):
     if (request.method == 'POST'):
         task = Todo.objects.get(id=pk)
         task.delete()
+        
+        return HttpResponse('You are not allowed here!!')
+        return redirect('home')
 
